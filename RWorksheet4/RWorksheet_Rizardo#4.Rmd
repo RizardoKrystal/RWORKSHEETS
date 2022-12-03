@@ -1,0 +1,72 @@
+---
+title: "RWorksheet_Rizardo#4"
+author: "Krystal Rose M. Rizardo"
+date: "2022-11-23"
+output: pdf_document
+---
+```{r 1A}
+one_shoe <- c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5,
+               9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5)
+first_height <- c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0,
+            72.0, 64.0, 74.5, 67.0, 71.0, 71.0)
+gender_one <- c('f', 'f', 'f', 'f', 'm', 'f', 'f', 'f', 'm',
+            'f', 'm', 'f', 'm', 'm')
+two_shoe <- c(13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5,
+                8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0)
+second_height <- c(77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 
+             67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0)
+gender_two <- c('m', 'm', 'f', 'f', 'm', 'f', 'f', 'm', 'm', 
+             'f', 'm', 'm', 'm', 'm')
+
+table_data <- data.frame(one_shoe, first_height, gender_two, two_shoe, 
+                   second_height, gender_two)
+table_data
+```
+```{r 1B}
+shoe_size <- cbind(one_shoe,two_shoe)
+shoe_size
+mean(shoe_size)
+
+height <- cbind(first_height, second_height)
+height
+mean(height)
+```
+```{r 2}
+ month <- c("March","April","January","November","January",
+           "September","October","September","November","August",
+           "January","November","November","February","May","August",
+           "July","December","August","August","September","November","February","April")
+
+      factor_month <- factor(month)
+      factor_month
+
+      factor_months_vector <- factor_month
+      factor_months_vector
+
+      summary(factor_month)
+      summary(factor_months_vector)
+```
+```{r 4}
+Direction <- c("East", "West", "North")
+Direction
+Frequency <- c(1, 4, 3)
+Frequency
+
+    vecss <- data.frame(Direction, Frequency)
+    vecss
+    factor_vector <- factor(Direction)
+
+    new_order_data <- factor(factor_vector,levels = c("East","West","North"))
+    print(new_order_data)
+
+```
+```{r 5A}
+setwd("C:/Users/Acer/Downloads")
+getwd()
+
+excel_data <- read.table("import_march.csv", sep=",", header=TRUE, stringsAsFactor=FALSE);
+excel_data
+```
+```{r 5B}
+View(excel_data)
+```
