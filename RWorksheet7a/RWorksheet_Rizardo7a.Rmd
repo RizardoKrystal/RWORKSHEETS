@@ -1,0 +1,173 @@
+---
+title: "RWorksheet 7a"
+author: "Krystal Rose M. Rizardo"
+date: "2022-12-23"
+output: pdf_document
+---
+
+
+```{r vector1}
+Student <- seq(1:10)
+PreTest <- c(55,54,47,57,51,61,57,54,63,58)
+PostTest <- c(61,60,56,63,56,63,59,56,62,61)
+
+tableDF <- data.frame(Student,PreTest,PostTest)
+tableDF
+
+```
+```{r vector2}
+agri_data<- c(10,10,10,20,20,50,10,
+           20,10,50,20,50,20,10)
+agri_data
+
+data_factor <- factor(agri_data, ordered = TRUE)
+data_factor
+```
+
+
+```{r vector3}
+abdul_data <- c("l","n","n","i","l","l","n","n","i","l")
+abdul_data
+
+abdul_dataDF <- data.frame(abdul_data)
+abdul_dataDF
+```
+
+
+```{r vector4}
+mnemonics_data <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+                "vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+                "wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+                "vic", "vic", "act")
+mnemonics_data 
+```
+
+
+```{r vector5}
+mnemonics_factor <- factor(mnemonics_data)
+mnemonics_factor
+
+state_level <- levels(mnemonics_data)
+state_level
+```
+
+
+
+```{r vector6}
+accountants_income <- c(60, 49, 40, 61, 64, 60, 59, 54,
+            62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+            65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+accountants_income
+```
+
+
+
+```{r vector7}
+income_tapp <- tapply(accountants_income, mnemonics_data, mean)
+income_tapp
+
+```
+
+
+```{r vector8}
+datalength <- length(income_tapp)
+datalength
+
+datastand <- sd(income_tapp)
+datastand
+
+datas <- datastand/sqrt(datalength)
+datas
+
+
+```
+
+
+```{r vector9}
+data(Titanic)
+titanic_DF <- data.frame(Titanic)
+titanic_DF
+```
+
+
+
+```{r vector10}
+survive_data <- subset(titanic_DF, Survived == "Yes")
+survive_data
+
+didnt_surv_data <- subset(titanic_DF, Survived == "No")
+didnt_surv_data
+
+```
+
+
+
+```{r vector11}
+library("readxl")
+install.packages("readxl")
+
+Read <- read_excel("C:/Users/Acer/Downloads/Breast_Cancer.xlsx") 
+Read
+
+```
+
+
+
+
+```{r vector13}
+mean_cell <- mean(Read$`Cell Shape`)
+mean_cell
+
+error_lng <- length(Read$`Cell Shape`)
+error_lng
+
+
+```
+
+
+```{r vector14}
+standarde_sd <- sd(Read$`Cell Shape`)
+standarde_sd
+
+```
+
+
+
+```{r vector15}
+cellshape_standarderror <- standarde_sd/sqrt(error_lng)
+cellshape_standarderror
+```
+
+```{r vector16}
+T_score = 0.05
+T_score
+
+Ts_standarderror = error_lng - 1
+Ts_standarderror
+
+T_score = qt(p=T_score/2, df=Ts_standarderror,lower.tail=F)
+T_score
+
+```
+
+
+```{r vector17}
+ConfidenceI <- T_score * cellshape_standarderror
+ConfidenceI
+
+ConfidenceI_diff <- mean_cell - ConfidenceI
+ConfidenceI_diff
+
+sumConfidenceI <- mean_cell + ConfidenceI
+sumConfidenceI
+
+Confidence <- c(ConfidenceI_diff, sumConfidenceI)
+Confidence
+```
+
+
+```{r vector18}
+percentage_Res <- subset(Read, Class == "malignant")
+percentage_Res
+
+```
