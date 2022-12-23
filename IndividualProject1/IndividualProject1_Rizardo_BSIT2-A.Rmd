@@ -1,0 +1,62 @@
+---
+title: "CS 101- INDIVIDUAL PROJECT 1"
+author: "Krystal Rose M. Rizardo"
+date: "2022-12-22"
+output:
+  html_document:
+    df_print: paged
+---
+```{r extensions}
+library(twitteR)
+library(rtweet)
+library(tm)
+library(dplyr)
+library(plotly)
+library(RColorBrewer)
+library(tidytext)
+library(stringr)
+library(tidyr)
+library(magrittr)
+library(wordcloud)
+library(wordcloud2)
+
+```
+```{r keys}
+CONSUMER_SECRET <- "i4HdM9fnNdX1kEsi0pDF0JIIqycgtV7xmcAAutY4F1y57zv3R5"
+CONSUMER_KEY <- "Pb0seOA5G3Ax4MKmmfkyKWJL0"
+ACCESS_SECRET <- "5Hw30PibQa3WiJWE8KnfDZaFozImVF3Tiw2TYV9X43Hyl"
+ACCESS_TOKEN <- "1592528645469323265-rxKyIBmwmUmuDvcBUybTHk78cKDt2p"
+```
+```{r set}
+setup_twitter_oauth(consumer_key = CONSUMER_KEY,
+                    consumer_secret = CONSUMER_SECRET,
+                    access_token = ACCESS_TOKEN,
+                    access_secret = ACCESS_SECRET)
+```
+```{r trend}
+WYATHomecoming = searchTwitter("WYATHomecoming-filter:retweets", n = 10000, since = "2022-12-18", until = "2022-12-21",
+                                lang = "en", retryOnRateLimit = 120)
+```
+```{r tweetsDF}
+tweetsDF <- twListToDF(WYATHomecoming)
+tweetsDF
+```
+```{r class}
+class(tweetsDF)
+```
+```{r name}
+names(tweetsDF)
+```
+```{r view}
+  View(tweetsDF)
+```
+```{r head1}
+  head(tweetsDF)[1:5]
+```
+```{r head2}
+head(tweetsDF$text)[1:5]
+```
+```{r data_checking}
+ check_data <- sapply(WYATHomecoming, function(x) sum(is.na(x)))  
+ check_data  
+```
